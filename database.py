@@ -11,8 +11,14 @@ from models.produto.model import Produto
 from models.reposicao.model import Reposicao
 from models.subcategoria.model import Subcategoria
 from models.venda.model import Venda
+import os
+from dotenv import load_dotenv, find_dotenv
 
-POSTGRESQL_URL = 'postgresql://postgres:12345@localhost:5432/db_estoque'
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path)
+
+POSTGRESQL_URL = os.getenv("POSTGRESQL_URL")
+
 engine = create_engine(POSTGRESQL_URL, echo=False)
 
 def create_database_with_tables():

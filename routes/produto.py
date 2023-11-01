@@ -19,8 +19,13 @@ def get_produto_lote(session: Session = Depends(get_session)):
     produto_lote = session.exec(statement).all()
     return produto_lote
 
-@router.get('/{cod_produto}', response_model=schemas.ProdutoRead)
+@router.get('/{cod_produto}', response_model=schema_lote.ProdutoComLotes)
 def get_produto(cod_produto: int, session: Session = Depends(get_session)):
     statement = select(model.Produto).where(model.Produto.cod_produto == cod_produto)
     produto = session.exec(statement).one()
+    return produto
+
+@router.get('/short/{cod_produto}', response_model=schemas.ProdutoShort)
+def get_produto_short(cod_produto: int, session: Session = Depends(get_session)):
+    produto = session.get(model.Produto, cod_produto)
     return produto

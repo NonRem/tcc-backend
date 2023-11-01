@@ -28,9 +28,11 @@ def get_ocorrencias(session: Session = Depends(get_session)):
 
 def registrar_relatorio(relatorio: dict):
     for key, value in relatorio.items():
-        item_subt = sum(value.values())
-        perdas = sum(value.values())-value["Encontrado"]
-        zerar_perdidos(key, item_subt)
+        total = 0
+        for val in value.values():
+            total += int(val)
+        perdas = total-int(value["Encontrado"])
+        zerar_perdidos(key, total)
         if perdas > 0:
             registrar_perdas(key, perdas)
 

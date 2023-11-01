@@ -32,7 +32,7 @@ def atualizar_mostruario(venda: dict):
         for key, value in venda.items():
             statement = select(Mostruario).where(Mostruario.cod_produto == key)
             item_mostruario = session.exec(statement).one()
-            item_mostruario.quant_atual -= value["quantidade"]
+            item_mostruario.quant_atual -= int(value["quantidade"])
             session.add(item_mostruario)
             session.commit()
 
@@ -41,6 +41,6 @@ def atualizar_estoque(venda: dict):
         for key, value in venda.items():
             statement = select(Estoque).where(Estoque.cod_produto == key)
             item_estoque = session.exec(statement).one()
-            item_estoque.quant_atual -= value["quantidade"]
+            item_estoque.quant_atual -= int(value["quantidade"])
             session.add(item_estoque)
             session.commit()

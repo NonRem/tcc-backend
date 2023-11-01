@@ -8,7 +8,7 @@ from models.mostruario.model import Mostruario
 from typing import List
 from database import engine
 
-router = APIRouter(prefix='/reposicao', dependencies=[Depends(get_current_user)], tags=["reposicao"])
+router = APIRouter(prefix='/reposicao', dependencies=[], tags=["reposicao"])
 
 @router.post('/add', response_model=ReposicaoRead)
 def post_reposicao(reposicao: ReposicaoCreate, session: Session = Depends(get_session), user: dict = Depends(get_current_user)):
@@ -21,7 +21,7 @@ def post_reposicao(reposicao: ReposicaoCreate, session: Session = Depends(get_se
     return reposicao_db
 
 @router.get('/', response_model=List[ReposicaoRead])
-def get_reposicoes(session: Session = Depends(get_session)):
+def get_reposicoes(session: Session = Depends(get_session), user = Depends(get_current_user)):
     reposicoes = session.exec(select(Reposicao)).all()
     return reposicoes
 

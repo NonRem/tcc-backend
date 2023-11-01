@@ -20,3 +20,8 @@ class ProdutoRead(SQLModel):
     peso: Optional[int]
     categoria: "CategoriaRead"
     subcategoria: "SubcategoriaRead"
+
+class ProdutoShort(SQLModel):
+    cod_produto: int
+    nome: str
+    valor: float
