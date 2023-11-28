@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from ..estoque.model import Estoque
     from ..mostruario.model import Mostruario
     from ..reposicao.model import Reposicao
+    from ..alerta.model import Alerta
 
 class Produto(SQLModel, table=True):
     cod_produto: int = Field(default=None, primary_key=True)
@@ -25,5 +26,4 @@ class Produto(SQLModel, table=True):
     armazenado: "Estoque" = Relationship(back_populates="mercadoria")
     exposto: "Mostruario" = Relationship(back_populates="produto")
     recolocado: List["Reposicao"] = Relationship(back_populates="item")
-
-
+    notificacao: List["Alerta"] = Relationship(back_populates="artigo")

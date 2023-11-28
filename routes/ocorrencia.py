@@ -23,7 +23,7 @@ def post_ocorrencia(ocorrencia: OcorrenciaCreate, session: Session = Depends(get
 
 @router.get('/', response_model=List[OcorrenciaRead])
 def get_ocorrencias(session: Session = Depends(get_session)):
-    ocorrencias = session.exec(select(Ocorrencia)).all()
+    ocorrencias = session.exec(select(Ocorrencia).order_by(Ocorrencia.data.desc())).all()
     return ocorrencias
 
 def registrar_relatorio(relatorio: dict):

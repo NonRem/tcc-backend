@@ -11,6 +11,7 @@ class Lote(SQLModel, table=True):
     vencimento: date = Field(index=True)
     cod_lote: int = Field(index=True)
     recebimento: date
+    quantidade: int
     cod_produto: int = Field(foreign_key="produto.cod_produto")
     id_fornecedor: int = Field(foreign_key="fornecedor.id")
 

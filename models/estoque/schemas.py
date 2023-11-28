@@ -16,8 +16,7 @@ class EstoqueRead(SQLModel):
     id: int
     mercadoria: "ProdutoRead"
 
-class EstoqueUpdate(EstoqueCreate):
-    id: int
+class EstoqueUpdate(SQLModel):
     quant_max: Optional[int]
     quant_min: Optional[int]
     quant_atual: Optional[int]

@@ -22,7 +22,7 @@ def post_reposicao(reposicao: ReposicaoCreate, session: Session = Depends(get_se
 
 @router.get('/', response_model=List[ReposicaoRead])
 def get_reposicoes(session: Session = Depends(get_session), user = Depends(get_current_user)):
-    reposicoes = session.exec(select(Reposicao)).all()
+    reposicoes = session.exec(select(Reposicao).order_by(Reposicao.data.desc())).all()
     return reposicoes
 
 def reestocar(reposicao: Reposicao):

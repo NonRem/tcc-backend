@@ -10,14 +10,15 @@ class LoteCreate(SQLModel):
     recebimento: date
     cod_produto: int
     id_fornecedor: int
+    quantidade: int
 
 class LoteRead(SQLModel):
     vencimento: date
     cod_lote: int
     recebimento: date
     id: int
+    quantidade: int
     mercadoria: "ProdutoRead"
-    vendedor: "FornecedorRead"
 
 class LoteReadShort(SQLModel):
     vencimento: date

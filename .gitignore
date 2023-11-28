@@ -3,3 +3,5 @@
 .env
 settings.py
 /dependencies
+.vercel
+/lib

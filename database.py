@@ -11,15 +11,19 @@ from models.produto.model import Produto
 from models.reposicao.model import Reposicao
 from models.subcategoria.model import Subcategoria
 from models.venda.model import Venda
+from models.alerta.model import Alerta
 import os
 from dotenv import load_dotenv, find_dotenv
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 
-POSTGRESQL_URL = os.getenv("POSTGRESQL_URL")
 
-engine = create_engine(POSTGRESQL_URL, echo=False)
+POSTGRESQL_URL = os.getenv("POSTGRESQL_URL")
+POSTGRESQL_URL_LOCAL = os.getenv("POSTGRESQL_URL_LOCAL")
+
+engine = create_engine(POSTGRESQL_URL_LOCAL, echo=False)
+
 
 def create_database_with_tables():
     SQLModel.metadata.create_all(engine)
@@ -27,6 +31,10 @@ def create_database_with_tables():
 
 def main():
     create_database_with_tables()
+    """ loop = asyncio.get_event_loop()
+    loop.add_reader(conn, handle_notify)
+    loop.run_forever() """
+
 
 if __name__ == '__main__':
     main()

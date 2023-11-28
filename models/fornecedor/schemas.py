@@ -1,7 +1,9 @@
 from sqlmodel import SQLModel
 
-class FornecedorRead(SQLModel):
-    id: int
+class FornecedorCreate(SQLModel):
     nome: str
     endereco: str
     telefone: str
+
+class FornecedorRead(FornecedorCreate):
+    id: int

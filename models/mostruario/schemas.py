@@ -13,8 +13,7 @@ class MostruarioRead(MostruarioCreate):
     id: int
     produto: "ProdutoRead"
 
-class MostruarioUpdate(MostruarioRead):
+class MostruarioUpdate(SQLModel):
     quant_max: Optional[int]
     quant_min: Optional[int]
     quant_atual: Optional[int]
-    quant_perdida: Optional[int]

@@ -28,3 +28,14 @@ def post_estoque(estoque: EstoqueCreate, session: Session = Depends(get_session)
     session.refresh(estoque_db)
     return estoque_db
 
+@router.patch('/{cod_produto}', response_model=EstoqueRead)
+def patch_estoque_item(cod_produto: int, new_mostruario: EstoqueUpdate, session: Session = Depends(get_session)):
+    statement = select(Estoque).where(Estoque.cod_produto == cod_produto)
+    estoque_db = session.exec(statement).first()
+    estoque_dict = new_mostruario.dict(exclude_unset=True)
+    for key, value in estoque_dict.items():
+        setattr(estoque_db, key, value)
+    session.add(estoque_db)
+    session.commit()
+    session.refresh(estoque_db)
+    return estoque_db 
