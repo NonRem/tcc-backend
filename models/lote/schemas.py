@@ -6,7 +6,7 @@ from models.fornecedor.schemas import FornecedorRead
 
 class LoteCreate(SQLModel):
     vencimento: date
-    cod_lote: int
+    cod_lote: str
     recebimento: date
     cod_produto: int
     id_fornecedor: int
@@ -14,7 +14,7 @@ class LoteCreate(SQLModel):
 
 class LoteRead(SQLModel):
     vencimento: date
-    cod_lote: int
+    cod_lote: str
     recebimento: date
     id: int
     quantidade: int
@@ -22,5 +22,5 @@ class LoteRead(SQLModel):
 
 class LoteReadShort(SQLModel):
     vencimento: date
-    cod_lote: int
+    cod_lote: str
     recebimento: date

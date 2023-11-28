@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Lote(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     vencimento: date = Field(index=True)
-    cod_lote: int = Field(index=True)
+    cod_lote: str = Field(index=True)
     recebimento: date
     quantidade: int
     cod_produto: int = Field(foreign_key="produto.cod_produto")
